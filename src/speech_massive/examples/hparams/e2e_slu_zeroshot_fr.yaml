@@ -17,7 +17,7 @@ eval_steps: 100
 evaluation_strategy: steps
 fp16: false
 is_few_shot: false
-gradient_accumulation_steps: 1
+gradient_accumulation_steps: 2
 greater_is_better: false
 group_by_length: false
 label_smoothing_factor: 0.0
@@ -31,7 +31,7 @@ lr_scheduler_type: linear
 max_grad_norm: 1.0
 max_steps: 20000
 metric_for_best_model: eval_loss
-model_name_or_path: openai/whisper-medium
+model_name_or_path: openai/whisper-large-v3
 overwrite_output_dir: true # should be set False if you wish to continue training from last checkpoint
 output_dir: /your/desired/path/of/model # change the directory accordingly
 per_device_eval_batch_size: 8

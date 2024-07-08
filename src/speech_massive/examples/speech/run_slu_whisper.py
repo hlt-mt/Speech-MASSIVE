@@ -14,6 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """
+Author
+  * Beomseok LEE 2024
+
 Fine-tuning the library models for sequence to sequence speech recognition.
 """
 # You can also adapt this script on your own sequence to sequence speech
