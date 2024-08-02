@@ -1,40 +1,28 @@
-"""
-code taken from 
+# code taken from
 
-https://github.com/s3prl/s3prl/blob/aa3ba844bfe2b5402b7f345cbebd72b33ef6aeff/s3prl/metric/common.py
-https://github.com/s3prl/s3prl/blob/aa3ba844bfe2b5402b7f345cbebd72b33ef6aeff/s3prl/metric/slot_filling.py
+# https://github.com/s3prl/s3prl/blob/aa3ba844bfe2b5402b7f345cbebd72b33ef6aeff/s3prl/metric/common.py
+# https://github.com/s3prl/s3prl/blob/aa3ba844bfe2b5402b7f345cbebd72b33ef6aeff/s3prl/metric/slot_filling.py
 
-"""
+# Original authors
+# Commonly used metrics
 
-"""
-Author of modified version for Speech-MASSIVE
+# Authors
+#  * Shu-wen Yang 2022
+#  * Heng-Jui Chang 2022
+#  * Haibin Wu 2022
 
-Author
-  * Beomseok LEE 2024
-"""
+# Metrics for the slot filling SLU task
 
-"""
-Original authors
-Commonly used metrics
-
-Authors
-  * Shu-wen Yang 2022
-  * Heng-Jui Chang 2022
-  * Haibin Wu 2022
-
-Metrics for the slot filling SLU task
-
-Authors:
-  * Yung-Sung Chuang 2021
-  * Heng-Jui Chang 2022
-"""
+# Authors:
+#  * Yung-Sung Chuang 2021
+#  * Heng-Jui Chang 2022
 
 import re
 from typing import Dict, List, Tuple, Union
 import editdistance as ed
 from scipy.interpolate import interp1d
 from scipy.optimize import brentq
-from sklearn.metrics import accuracy_score, roc_curve
+from sklearn.metrics import roc_curve
 
 
 def accuracy(xs, ys, item_same_fn=None):
@@ -134,12 +122,11 @@ def compute_eer(labels: List[int], scores: List[float]):
 
 
 def compute_minDCF(
-    labels: List[int],
-    scores: List[float],
-    p_target: float = 0.01,
-    c_miss: int = 1,
-    c_fa: int = 1,
-):
+        labels: List[int],
+        scores: List[float],
+        p_target: float = 0.01,
+        c_miss: int = 1,
+        c_fa: int = 1):
     """Compute MinDCF.
     Computes the minimum of the detection cost function.  The comments refer to
     equations in Section 3 of the NIST 2016 Speaker Recognition Evaluation Plan.
@@ -169,6 +156,7 @@ def compute_minDCF(
     min_dcf = min_c_det / c_def
     return min_dcf, min_c_det_threshold
 
+
 def clean(ref: str) -> str:
     ref = re.sub(r"B\-(\S+) ", "", ref)
     ref = re.sub(r" E\-(\S+)", "", ref)
@@ -197,25 +185,37 @@ def parse(hyp: str, ref: str) -> Tuple[str, str, str, str]:
 
 
 def get_slot_dict(
-    pred_slot, pred_transcript, label_slot, label_transcript 
-) -> Tuple[Dict[str, List[str]], Dict[str, List[str]]]:
-
+        pred_slot,
+        pred_transcript,
+        label_slot,
+        label_transcript) -> Tuple[Dict[str, List[str]], Dict[str, List[str]]]:
     hyp_dict, ref_dict = {}, {}
-    for slot_tok, transcript_tok in zip(pred_slot.split(), pred_transcript.split()):
+
+    for slot_tok, transcript_tok in zip(
+            pred_slot.split(), pred_transcript.split()):
         hyp_dict.setdefault(slot_tok, [])
         hyp_dict[slot_tok].append(transcript_tok)
 
-    for slot_tok, transcript_tok in zip(label_slot.split(), label_transcript.split()):
+    for slot_tok, transcript_tok in zip(
+            label_slot.split(), label_transcript.split()):
         ref_dict.setdefault(slot_tok, [])
         ref_dict[slot_tok].append(transcript_tok)
 
     return ref_dict, hyp_dict
 
 
-def slot_type_f1(slots_pred_list, transcript_pred_list, slots_label_list, transcript_label_list) -> float:
+def slot_type_f1(
+        slots_pred_list,
+        transcript_pred_list,
+        slots_label_list,
+        transcript_label_list) -> float:
     F1s = []
 
-    for p_slot, p_trans, t_slot, t_trans in zip(slots_pred_list, transcript_pred_list, slots_label_list, transcript_label_list):
+    for p_slot, p_trans, t_slot, t_trans in zip(
+            slots_pred_list,
+            transcript_pred_list,
+            slots_label_list,
+            transcript_label_list):
         ref_dict, hyp_dict = get_slot_dict(p_slot, p_trans, t_slot, t_trans)
 
         if len(hyp_dict.keys()) == 0 and len(ref_dict.keys()) == 0:
@@ -239,9 +239,19 @@ def slot_type_f1(slots_pred_list, transcript_pred_list, slots_label_list, transc
 
     return sum(F1s) / len(F1s)
 
-def slot_value_cer(slots_pred_list, transcript_pred_list, slots_label_list, transcript_label_list) -> float:
+
+def slot_value_cer(
+        slots_pred_list,
+        transcript_pred_list,
+        slots_label_list,
+        transcript_label_list) -> float:
     value_hyps, value_refs = [], []
-    for p_slot, p_trans, t_slot, t_trans in zip(slots_pred_list, transcript_pred_list, slots_label_list, transcript_label_list):
+
+    for p_slot, p_trans, t_slot, t_trans in zip(
+            slots_pred_list,
+            transcript_pred_list,
+            slots_label_list,
+            transcript_label_list):
         ref_dict, hyp_dict = get_slot_dict(p_slot, p_trans, t_slot, t_trans)
 
         # Slot Value WER/CER evaluation
@@ -295,8 +305,10 @@ def slot_value_wer(hypothesis: List[str], groundtruth: List[str], **kwargs) -> f
 
 
 def slot_edit_f1(
-    hypothesis: List[str], groundtruth: List[str], loop_over_all_slot: bool, **kwargs
-) -> float:
+        hypothesis: List[str],
+        groundtruth: List[str],
+        loop_over_all_slot: bool,
+        **kwargs) -> float:
     slot2F1 = {}  # defaultdict(lambda: [0,0,0]) # TPs, FNs, FPs
     for p, t in zip(hypothesis, groundtruth):
         ref_dict, hyp_dict = get_slot_dict(p, t)
@@ -310,7 +322,8 @@ def slot_edit_f1(
             TP = 0
             FP = 0
             FN = 0
-            if slot not in ref_dict:  # this never happens in list(ref_dict.keys())
+            # this never happens in list(ref_dict.keys())
+            if slot not in ref_dict:
                 for hyp_v in hyp_dict[slot]:
                     FP += 1
             else:
@@ -345,8 +358,10 @@ def slot_edit_f1(
 
 
 def slot_edit_f1_full(hypothesis: List[str], groundtruth: List[str], **kwargs) -> float:
-    return slot_edit_f1(hypothesis, groundtruth, loop_over_all_slot=True, **kwargs)
+    return slot_edit_f1(
+        hypothesis, groundtruth, loop_over_all_slot=True, **kwargs)
 
 
 def slot_edit_f1_part(hypothesis: List[str], groundtruth: List[str], **kwargs) -> float:
-    return slot_edit_f1(hypothesis, groundtruth, loop_over_all_slot=False, **kwargs)
+    return slot_edit_f1(
+        hypothesis, groundtruth, loop_over_all_slot=False, **kwargs)

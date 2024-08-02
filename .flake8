@@ -1,0 +1,5 @@
+[flake8]
+max-line-length = 99
+max-doc-length = 99
+doctests = True
+exclude = .git,__pycache__,build,dist,venv,.env,ENV,.venv

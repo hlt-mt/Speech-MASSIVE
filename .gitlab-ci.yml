@@ -1,0 +1,12 @@
+image: python:3.9
+
+stages:
+  - test
+
+lint:
+  stage: test
+  script:
+    - python -m pip install flake8
+    - flake8
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
