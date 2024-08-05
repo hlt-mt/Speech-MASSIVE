@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "speech_massive"
+version = "0.1.0"
+authors = [{name = "Beomseok Lee", email = "beomseok.lee@unitn.it"}]
+description = "Speech-MASSIVE: A Multilingual Speech Dataset for SLU and Beyond"
+readme = "README.md"
+requires-python = ">=3.9.4"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "accelerate >= 0.25.0",
+    "audioread >= 3.0.1",
+    "datasets >= 2.16.0",
+    "editdistance >= 0.6.2",
+    "evaluate >= 0.4.1",
+    "ffmpeg >= 1.4",
+    "ffmpeg-python >= 0.2.0",
+    "flake8 >= 7.1.0",
+    "jiwer >= 3.0.4",
+    "librosa >= 0.10.1",
+    "numpy >= 1.26.2",
+    "pandas >= 2.1.4",
+    "pyarrow >= 14.0.2",
+    "PyYAML >= 6.0.1",
+    "seqeval >= 1.2.2",
+    "tokenizers >= 0.15.0",
+    "torch >= 2.1.2",
+    "torchaudio >= 2.1.2",
+    "transformers >= 4.37.0",
+    "urllib3 == 1.26.6"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/hlt-mt/Speech-MASSIVE"
+
+[tool.setuptools.packages.find]
+where = ["src"]
