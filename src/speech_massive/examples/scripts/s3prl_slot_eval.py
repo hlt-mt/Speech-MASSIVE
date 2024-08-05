@@ -1,21 +1,36 @@
-# code taken from
+# Copyright 2024 FBK and NAVER LABS Europe. All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
-# https://github.com/s3prl/s3prl/blob/aa3ba844bfe2b5402b7f345cbebd72b33ef6aeff/s3prl/metric/common.py
-# https://github.com/s3prl/s3prl/blob/aa3ba844bfe2b5402b7f345cbebd72b33ef6aeff/s3prl/metric/slot_filling.py
+"""
+original evaluation code from s3prl code repository
+https://github.com/s3prl/s3prl/blob/aa3ba844bfe2b5402b7f345cbebd72b33ef6aeff/s3prl/metric/common.py
+https://github.com/s3prl/s3prl/blob/aa3ba844bfe2b5402b7f345cbebd72b33ef6aeff/s3prl/metric/slot_filling.py
 
-# Original authors
-# Commonly used metrics
+Original authors
+Commonly used metrics
 
-# Authors
-#  * Shu-wen Yang 2022
-#  * Heng-Jui Chang 2022
-#  * Haibin Wu 2022
+Authors
+  * Shu-wen Yang 2022
+  * Heng-Jui Chang 2022
+  * Haibin Wu 2022
 
-# Metrics for the slot filling SLU task
+Metrics for the slot filling SLU task
 
-# Authors:
-#  * Yung-Sung Chuang 2021
-#  * Heng-Jui Chang 2022
+Authors:
+  * Yung-Sung Chuang 2021
+  * Heng-Jui Chang 2022
+"""
 
 import re
 from typing import Dict, List, Tuple, Union
