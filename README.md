@@ -67,10 +67,10 @@ All the provided codes are tested with below environments. Supports for differen
 
 1. Clone this github to desired path
 ```
-$ git clone https://github.com/alexa/massive.git /your/speech-massive-code/path
+$ git clone https://github.com/hlt-mt/Speech-MASSIVE /your/speech-massive-code/path
 ```
 
-2. Set up your own virtual envirnoment (venv, conda and etc)
+2. Set up your own virtual envirnoment (venv, conda and etc) and activate it
 ```
 $ python -m venv /path/to/new/virtual/environment
 
@@ -79,22 +79,22 @@ or
 $ conda create --name <my-env>
 ```
 
-3. First install required packages
+3. First upgrade pip to support pyproject.toml
 ```
-$ pip install requirements.txt
+(venv) $ pip install --upgrade pip
 ```
 
-4. Check hyper parameter files and modify them accordingly
+4. Install Speech-MASSIVE python project
+```
+(venv) $ pip install -e .
+```
+
+5. Check hyper parameter files and modify them accordingly
 ```
     .
     └── src/speech_massive/examples/hparams
         ├── e2e_slu_zeroshot_fr.yaml    # Hparamer for zero-shot (French train data) setting
         └── e2e_slu_fewshot_fr.yaml     # Hparamer for few-shot (French train data + all langs train_115 data) setting
-```
-
-5. Add your code directory to the PYTHON path to use custom trainer
-```
-$ export PYTHONPATH=$PYTHON_PATH:/your/speech-massive-code/path
 ```
 
 6. Run training
@@ -131,7 +131,12 @@ We ask that you cite our Speech-MASSIVE paper (link to be added) and both of the
 
 Speech-MASSIVE paper:
 ```
-citation to be added
+@inproceedings{lee24_interspeech,
+  author={Beomseok Lee and Ioan Calapodescu and Marco Gaido and Matteo Negri and Laurent Besacier},
+  title={{Speech-MASSIVE: A Multilingual Speech Dataset for SLU and Beyond}},
+  year=2024,
+  booktitle={Proc. Interspeech 2024},
+}
 ```
 
 MASSIVE paper:
