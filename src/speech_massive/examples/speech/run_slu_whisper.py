@@ -887,7 +887,7 @@ def main():
 
     # 7. Preprocessing the datasets.
     # We need to read the audio files as arrays and tokenize the targets.
-    max_input_length = data_args.max_duration_in_seconds * feature_extractor.sampling_rates
+    max_input_length = data_args.max_duration_in_seconds * feature_extractor.sampling_rate
     min_input_length = data_args.min_duration_in_seconds * feature_extractor.sampling_rate
     audio_column_name = data_args.audio_column_name
     num_workers = data_args.preprocessing_num_workers
