@@ -108,15 +108,12 @@ $ python ${your_path}/src/speech_massive/examples/speech/run_slu_whisper.py {you
 $ python ${your_path}/src/speech_massive/examples/speech/run_slu_whisper.py {your_path}/src/speech_massive/examples/hparams/e2e_slu_fewshot_fr.yaml
 ```
 
-- 
-
 
 ## Quick Links
-- Speech-MASSIVE paper (link to be added)
-- [Speech-MASSIVE dataset on HuggingFace](https://huggingface.co/datasets/FBK-MT/Speech-MASSIVE)
-- Speech-MASSIVE dataset on directly downlodable link (link to be added)
-- E2E SLU models trained with Speech-MASSIVE on HuggingFace (link to be added)
-
+- [Speech-MASSIVE paper (arXiv)](https://arxiv.org/abs/2408.03900)
+- [Speech-MASSIVE train/validation set on HuggingFace](https://huggingface.co/datasets/FBK-MT/Speech-MASSIVE)
+- [Speech-MASSIVE test set on HuggingFace](https://huggingface.co/datasets/FBK-MT/Speech-MASSIVE-test)
+- [Speech-MASSIVE train/validation/test set zip file directly downloadable](https://mt.fbk.eu/speech-massive)
 
 ## Licenses
 Speech-MASSIVE dataset is released with CC-BY-NC-SA-4.0 license.
@@ -127,15 +124,17 @@ See `LICENSE` and `NOTICE.md`.
 
 ## Citation
 
-We ask that you cite our Speech-MASSIVE paper (link to be added) and both of the [MASSIVE paper](https://arxiv.org/abs/2204.08582) given that Speech-MASSIVE used text data from MASSIVE as seed data.
+We ask that you cite our [Speech-MASSIVE paper on arXiv](https://arxiv.org/abs/2408.03900) and also the [MASSIVE paper](https://arxiv.org/abs/2204.08582) given that Speech-MASSIVE used text data from MASSIVE as seed data.
 
-Speech-MASSIVE paper:
+
+
+Speech-MASSIVE paper (accepted at INTERSPEECH 2024):
 ```
-@inproceedings{lee24_interspeech,
-  author={Beomseok Lee and Ioan Calapodescu and Marco Gaido and Matteo Negri and Laurent Besacier},
-  title={{Speech-MASSIVE: A Multilingual Speech Dataset for SLU and Beyond}},
-  year=2024,
-  booktitle={Proc. Interspeech 2024},
+@inproceedings{lee2024speechmassivemultilingualspeechdataset,
+      title={{Speech-MASSIVE: A Multilingual Speech Dataset for SLU and Beyond}}, 
+      author={Beomseok Lee and Ioan Calapodescu and Marco Gaido and Matteo Negri and Laurent Besacier},
+      year={2024},
+       booktitle={Proc. Interspeech 2024},
 }
 ```
 
