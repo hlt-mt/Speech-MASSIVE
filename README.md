@@ -122,6 +122,10 @@ All the codes in this repository are released with Apache License 2.0.
 
 See `LICENSE` and `NOTICE.md`.
 
+## Acknowledgements
+
+The speech collection was funded by the EU Horizon Europe (HE) Research and Innovation programme under grant No. 101070631 (UTTER project).
+
 ## Citation
 
 We ask that you cite our [Speech-MASSIVE paper on arXiv](https://arxiv.org/abs/2408.03900) and also the [MASSIVE paper](https://arxiv.org/abs/2204.08582) given that Speech-MASSIVE used text data from MASSIVE as seed data.
